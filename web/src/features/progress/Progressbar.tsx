@@ -66,7 +66,6 @@ const Progressbar: React.FC = () => {
             />
             <Text
               fontFamily="Inter"
-              isTruncated
               fontSize="1.1em"
               fontWeight="500"
               textShadow="0px 0px 5px rgba(0, 0, 0, 0.6)"
