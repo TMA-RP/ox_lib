@@ -38,7 +38,6 @@ local function interruptProgress(data)
 end
 
 local function startProgress(data)
-    playerState.invBusy = true
     progress = data
 
     if data.anim then
@@ -119,7 +118,6 @@ local function startProgress(data)
         end
     end
 
-    playerState.invBusy = false
     local cancel = progress == false
     progress = nil
 
