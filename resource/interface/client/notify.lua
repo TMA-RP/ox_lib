@@ -14,10 +14,17 @@
 
 ---@param data NotifyProps
 function lib.notify(data)
-    SendNUIMessage({
-        action = 'customNotify',
-        data = data
-    })
+  data.position = "bottom-left"
+  data.style = {
+    background = "rgba(0, 0, 0, .5)",
+    borderRadius = "0 0.5em 0.5em 0",
+    borderLeft = "0.3em solid #2a7aff",
+    marginLeft = "0"
+  }
+  SendNUIMessage({
+    action = 'customNotify',
+    data = data
+  })
 end
 
 ---@class DefaultNotifyProps
@@ -30,10 +37,17 @@ end
 
 ---@param data DefaultNotifyProps
 function lib.defaultNotify(data)
-    SendNUIMessage({
-        action = 'notify',
-        data = data
-    })
+  data.position = "bottom-left"
+  data.style = {
+    background = "rgba(0, 0, 0, .5)",
+    borderRadius = "0 0.5em 0.5em 0",
+    borderLeft = "0.3em solid #2a7aff",
+    marginLeft = "0"
+  }
+  SendNUIMessage({
+    action = 'notify',
+    data = data
+  })
 end
 
 RegisterNetEvent('ox_lib:notify', lib.notify)
