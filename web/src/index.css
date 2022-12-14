@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 
 html {
-  color-scheme: normal !important;
+    color-scheme: normal !important;
 }
 
 body {
@@ -75,4 +75,12 @@ ul#chakra-toast-manager-bottom-left {
 
 .chakra-toast__inner {
     margin-left: 0 !important;
+}
+
+.progressbarWrapper {
+    transition: transform .25s ease;
+}
+
+.progressbarWrapper.toUpper {
+    transform: translateY(-7em);
 }

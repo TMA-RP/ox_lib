@@ -216,3 +216,9 @@ RegisterCommand('cancelprogress', function()
 end)
 
 exports.ViceRP:RegisterKeyMapping('cancelprogress', 'Arrêter une tâche', 'keyboard', 'x')
+
+RegisterNetEvent("ox_lib:makeUpper", function ()
+    SendNUIMessage({
+        action = 'makeUpper',
+    })
+end)
