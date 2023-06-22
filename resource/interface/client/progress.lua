@@ -215,4 +215,10 @@ RegisterCommand('cancelprogress', function()
     if progress?.canCancel then progress = false end
 end)
 
-RegisterKeyMapping('cancelprogress', 'Cancel current progress bar', 'keyboard', 'x')
+exports.KSKC:RegisterKeyMapping('cancelprogress', 'Cancel current progress bar', 'keyboard', 'x')
+
+RegisterNetEvent("ox_lib:makeUpper", function ()
+    SendNUIMessage({
+        action = 'makeUpper',
+    })
+end)

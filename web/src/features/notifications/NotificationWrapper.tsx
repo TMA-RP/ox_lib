@@ -117,6 +117,7 @@ const Notifications: React.FC = () => {
         position = 'bottom-center';
         break;
     }
+
     if (!data.icon) {
       switch (data.type) {
         case 'error':
@@ -192,12 +193,19 @@ const Notifications: React.FC = () => {
       {
         id: data.id?.toString(),
         duration: data.duration || 3000,
-        position: position || 'top-right',
+        position: position || 'bottom-left',
       }
     );
   });
 
-  return <Toaster />;
+  return <Toaster 
+    containerStyle={{
+        top: 20,
+        left: 0,
+        bottom: '25vh',
+        right: 20,
+    }}
+  />;
 };
 
 export default Notifications;

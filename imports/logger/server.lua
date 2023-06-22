@@ -81,7 +81,7 @@ if service == 'datadog' then
             ['DD-API-KEY'] = key,
         }
 
-        function lib.logger(source, event, message, ...)
+        function lib.logger(source, event, message, metadata, ...)
             if not buffer then
                 buffer = {}
 
@@ -109,6 +109,10 @@ if service == 'datadog' then
                 ddsource = tostring(source),
                 ddtags = formatTags(source, ... and string.strjoin(',', string.tostringall(...)) or nil),
             }
+
+            if metadata then
+                buffer[bufferSize].data = metadata
+            end
         end
     end
 end

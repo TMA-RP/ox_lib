@@ -14,6 +14,13 @@
 
 ---@param data NotifyProps
 function lib.notify(data)
+    data.position = "bottom-left"
+    data.style = {
+        background = "rgba(0, 0, 0, .5)",
+        borderRadius = "0 0.5em 0.5em 0",
+        borderLeft = "0.3em solid #2a7aff",
+        marginLeft = "0"
+    }
     SendNUIMessage({
         action = 'notify',
         data = data
@@ -31,6 +38,13 @@ end
 ---@param data DefaultNotifyProps
 function lib.defaultNotify(data)
     -- Backwards compat for v3 
+    data.position = "bottom-left"
+    data.style = {
+        background = "rgba(0, 0, 0, .5)",
+        borderRadius = "0 0.5em 0.5em 0",
+        borderLeft = "0.3em solid #2a7aff",
+        marginLeft = "0"
+    }
     data.type = data.status
     if data.type == 'inform' then data.type = 'info' end
     return lib.notify(data)
