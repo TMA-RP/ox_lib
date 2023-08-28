@@ -95,8 +95,22 @@ end
 ---@param seperator? string
 ---@return string
 function math.groupdigits(number, seperator) -- credit http://richard.warburton.it
-    local left,num,right = string.match(number,'^([^%d]*%d)(%d*)(.-)$')
-    return left..(num:reverse():gsub('(%d%d%d)','%1' .. (seperator or ',')):reverse())..right
+    local left, num, right = string.match(number, '^([^%d]*%d)(%d*)(.-)$')
+    return left .. (num:reverse():gsub('(%d%d%d)', '%1' .. (seperator or ',')):reverse()) .. right
+end
+
+function math.easeInOutQuad(t, b, c, d)
+    t = t / (d / 2)
+    if t < 1 then
+        return c / 2 * t * t + b
+    else
+        t = t - 1
+        return -c / 2 * (t * (t - 2) - 1) + b
+    end
+end
+
+function math.lerp(a, b, t)
+    return a + (b - a) * t
 end
 
 return lib.math
