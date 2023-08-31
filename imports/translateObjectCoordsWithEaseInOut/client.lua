@@ -7,6 +7,8 @@ function lib.translateObjectCoordsWithEaseInOut(obj, destination, duration)
 
     while true do
         Wait(0)
+        if not DoesEntityExist(obj) then break end
+
         local currentTime = GetGameTimer() - startTime
 
         if currentTime > duration then
