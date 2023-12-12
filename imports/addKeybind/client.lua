@@ -57,10 +57,11 @@ function lib.addKeybind(data)
         data:onReleased()
     end)
 
-    exports.KSKC:RegisterKeyMapping('+' .. data.name, data.description, data.defaultMapper, data.defaultKey)
+    exports.TMA:RegisterKeyMapping('+' .. data.name, data.description, data.defaultMapper, data.defaultKey)
 
     if data.secondaryKey then
-        RegisterKeyMapping('~!+' .. data.name, data.description, data.secondaryMapper or data.defaultMapper, data.secondaryKey)
+        RegisterKeyMapping('~!+' .. data.name, data.description, data.secondaryMapper or data.defaultMapper,
+            data.secondaryKey)
     end
 
     SetTimeout(500, function()

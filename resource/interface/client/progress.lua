@@ -27,7 +27,8 @@ local function createProp(prop)
     local coords = GetEntityCoords(cache.ped)
     local object = CreateObject(prop.model, coords.x, coords.y, coords.z, true, true, true)
 
-    AttachEntityToEntity(object, cache.ped, GetPedBoneIndex(cache.ped, prop.bone or 60309), prop.pos.x, prop.pos.y, prop.pos.z, prop.rot.x, prop.rot.y, prop.rot.z, true, true, false, true, 0, true)
+    AttachEntityToEntity(object, cache.ped, GetPedBoneIndex(cache.ped, prop.bone or 60309), prop.pos.x, prop.pos.y,
+        prop.pos.z, prop.rot.x, prop.rot.y, prop.rot.z, true, true, false, true, 0, true)
     SetModelAsNoLongerNeeded(prop.model)
 
     return object
@@ -67,7 +68,8 @@ local function startProgress(data)
         if anim.dict then
             lib.requestAnimDict(anim.dict)
 
-            TaskPlayAnim(cache.ped, anim.dict, anim.clip, anim.blendIn or 3.0, anim.blendOut or 1.0, anim.duration or -1, anim.flag or 49, anim.playbackRate or 0, anim.lockX, anim.lockY, anim.lockZ)
+            TaskPlayAnim(cache.ped, anim.dict, anim.clip, anim.blendIn or 3.0, anim.blendOut or 1.0, anim.duration or -1,
+                anim.flag or 49, anim.playbackRate or 0, anim.lockX, anim.lockY, anim.lockZ)
             RemoveAnimDict(anim.dict)
         elseif anim.scenario then
             TaskStartScenarioInPlace(cache.ped, anim.scenario, 0, anim.playEnter ~= nil and anim.playEnter or true)
@@ -82,7 +84,7 @@ local function startProgress(data)
                 local prop = data.prop[i]
 
                 if prop then
-                    data['prop'..i] = createProp(prop)
+                    data['prop' .. i] = createProp(prop)
                 end
             end
         end
@@ -129,7 +131,7 @@ local function startProgress(data)
     if data.prop then
         local n = #data.prop
         for i = 1, n > 0 and n or 1 do
-            local prop = data['prop'..i]
+            local prop = data['prop' .. i]
 
             if prop then
                 DeleteEntity(prop)
@@ -215,9 +217,9 @@ RegisterCommand('cancelprogress', function()
     if progress?.canCancel then progress = false end
 end)
 
-exports.KSKC:RegisterKeyMapping('cancelprogress', 'Cancel current progress bar', 'keyboard', 'x')
+exports.TMA:RegisterKeyMapping('cancelprogress', 'Cancel current progress bar', 'keyboard', 'x')
 
-RegisterNetEvent("ox_lib:makeUpper", function ()
+RegisterNetEvent("ox_lib:makeUpper", function()
     SendNUIMessage({
         action = 'makeUpper',
     })
