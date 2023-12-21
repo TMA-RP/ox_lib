@@ -143,9 +143,21 @@ end
 ---@param lower number
 ---@param upper number
 ---@return number
-function math.clamp(val, lower, upper) -- credit https://love2d.org/forums/viewtopic.php?t=1856
+function math.clamp(val, lower, upper)                    -- credit https://love2d.org/forums/viewtopic.php?t=1856
     if lower > upper then lower, upper = upper, lower end -- swap if boundaries supplied the wrong way
     return math.max(lower, math.min(upper, val))
+end
+
+---Round a number to a certain number of decimal places
+---@param val number
+---@param round? number
+function math.roundify(val, round)
+    if round then
+        local power = 10 ^ round
+        return math.floor((val * power) + 0.5) / (power)
+    else
+        return math.floor(val + 0.5)
+    end
 end
 
 return lib.math
