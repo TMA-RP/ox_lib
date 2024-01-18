@@ -22,6 +22,10 @@ AddEventHandler('playerJoining', function(source)
     TriggerClientEvent('chat:addSuggestions', source, registeredCommands)
 end)
 
+AddEventHandler('ox_lib:refreshCommands', function()
+    TriggerEvent('ox_lib:refreshedCommands', registeredCommands)
+end)
+
 ---@param source number
 ---@param args table
 ---@param raw string
@@ -41,7 +45,7 @@ local function parseArguments(source, args, raw, params)
         elseif param.type == 'playerId' then
             value = arg == 'me' and source or tonumber(arg)
 
-            if not value or not GetPlayerGuid(value--[[@as string]]) then
+            if not value or not GetPlayerGuid(value --[[@as string]]) then
                 value = false
             end
         else
@@ -49,7 +53,8 @@ local function parseArguments(source, args, raw, params)
         end
 
         if not value and (not param.optional or param.optional and arg) then
-            return Citizen.Trace(("^1command '%s' received an invalid %s for argument %s (%s), received '%s'^0\n"):format(string.strsplit(' ', raw) or raw, param.type, i, param.name, arg))
+            return Citizen.Trace(("^1command '%s' received an invalid %s for argument %s (%s), received '%s'^0\n")
+                :format(string.strsplit(' ', raw) or raw, param.type, i, param.name, arg))
         end
 
         arg = value
@@ -74,7 +79,8 @@ function lib.addCommand(commandName, properties, cb, ...)
             local _commandName = type(properties) == 'table' and properties[1] or properties
             local info = debug.getinfo(2, 'Sl')
 
-            warn(("command '%s' is using deprecated syntax for lib.addCommand\nupdate the command or use lib.__addCommand to ignore this warning\n> source ^0(^5%s^0:%d)"):format(_commandName, info.short_src, info.currentline))
+            warn(("command '%s' is using deprecated syntax for lib.addCommand\nupdate the command or use lib.__addCommand to ignore this warning\n> source ^0(^5%s^0:%d)")
+                :format(_commandName, info.short_src, info.currentline))
             ---@diagnostic disable-next-line: deprecated
             return lib.__addCommand(commandName, properties, cb, ...)
         end
@@ -88,7 +94,8 @@ function lib.addCommand(commandName, properties, cb, ...)
             local param = params[i]
 
             if param.type then
-                param.help = param.help and ('%s (type: %s)'):format(param.help, param.type) or ('(type: %s)'):format(param.type)
+                param.help = param.help and ('%s (type: %s)'):format(param.help, param.type) or
+                    ('(type: %s)'):format(param.type)
             end
         end
     end
