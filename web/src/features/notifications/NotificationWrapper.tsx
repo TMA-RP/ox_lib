@@ -11,12 +11,14 @@ const useStyles = createStyles((theme) => ({
   container: {
     width: 300,
     height: 'fit-content',
-    backgroundColor: theme.colors.dark[6],
+    backgroundColor: "black",
     color: theme.colors.dark[0],
     padding: 12,
-    borderRadius: theme.radius.sm,
+    borderRadius: theme.radius.md,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
     fontFamily: 'Roboto',
-    boxShadow: theme.shadows.sm,
+    boxShadow: "0 0 0.5em 0.05em rgb(93, 236, 255)",
   },
   title: {
     fontWeight: 500,
@@ -141,17 +143,16 @@ const Notifications: React.FC = () => {
           sx={{
             animation: t.visible
               ? `${position?.includes('bottom') ? enterAnimationBottom : enterAnimationTop} 0.2s ease-out forwards`
-              : `${
-                  position?.includes('right')
-                    ? exitAnimationRight
-                    : position?.includes('left')
-                    ? exitAnimationLeft
-                    : position === 'top-center'
+              : `${position?.includes('right')
+                ? exitAnimationRight
+                : position?.includes('left')
+                  ? exitAnimationLeft
+                  : position === 'top-center'
                     ? exitAnimationTop
                     : position
-                    ? exitAnimationBottom
-                    : exitAnimationRight
-                } 0.4s ease-in forwards`,
+                      ? exitAnimationBottom
+                      : exitAnimationRight
+              } 0.4s ease-in forwards`,
             ...data.style,
           }}
           className={`${classes.container}`}
@@ -165,10 +166,10 @@ const Notifications: React.FC = () => {
                       data.type === 'error'
                         ? 'red'
                         : data.type === 'success'
-                        ? 'teal'
-                        : data.type === 'warning'
-                        ? 'yellow'
-                        : 'blue'
+                          ? 'teal'
+                          : data.type === 'warning'
+                            ? 'yellow'
+                            : 'blue'
                     }
                     style={{ alignSelf: !data.alignIcon || data.alignIcon === 'center' ? 'center' : 'start' }}
                     radius="xl"
@@ -212,12 +213,12 @@ const Notifications: React.FC = () => {
     );
   });
 
-  return <Toaster 
+  return <Toaster
     containerStyle={{
-        top: 20,
-        left: 0,
-        bottom: '25vh',
-        right: 20,
+      top: 20,
+      left: 0,
+      bottom: '25vh',
+      right: 20,
     }}
   />;
 };
