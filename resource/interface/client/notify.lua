@@ -19,9 +19,7 @@
 function lib.notify(data)
     data.position = "bottom-left"
     data.style = {
-        background = "rgba(0, 0, 0, .5)",
-        borderRadius = "0 0.5em 0.5em 0",
-        borderLeft = "0.3em solid #2a7aff",
+        borderLeft = "0.3em solid rgb(93, 236, 255)",
         marginLeft = "0"
     }
     SendNUIMessage({
