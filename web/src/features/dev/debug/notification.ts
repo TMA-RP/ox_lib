@@ -11,6 +11,7 @@ export const debugCustomNotification = () => {
         type: 'success',
         id: 'pogchamp',
         duration: 20000,
+        position: "bottom-left",
         style: {
           '.description': {
             color: 'red',
@@ -26,6 +27,7 @@ export const debugCustomNotification = () => {
         title: 'Error',
         description: 'Notification description',
         type: 'error',
+        position: "bottom-left"
       },
     },
   ]);
@@ -37,6 +39,7 @@ export const debugCustomNotification = () => {
         description: 'Notification description',
         type: 'success',
         icon: 'microchip',
+        position: "bottom-left"
       },
     },
   ]);

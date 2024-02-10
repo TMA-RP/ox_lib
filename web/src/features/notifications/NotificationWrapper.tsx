@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
   container: {
     width: 300,
     height: 'fit-content',
-    backgroundColor: "black",
+    backgroundColor: "rgba(0, 0, 0, .9)",
     color: theme.colors.dark[0],
     padding: 12,
     borderRadius: theme.radius.md,
@@ -19,6 +19,8 @@ const useStyles = createStyles((theme) => ({
     borderBottomLeftRadius: 0,
     fontFamily: 'Roboto',
     boxShadow: "0 0 0.5em 0.05em rgb(93, 236, 255)",
+    borderLeft: "0.3em solid rgb(93, 236, 255)",
+    marginLeft: "0"
   },
   title: {
     fontWeight: 500,

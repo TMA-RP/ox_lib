@@ -18,10 +18,6 @@
 ---@diagnostic disable-next-line: duplicate-set-field
 function lib.notify(data)
     data.position = "bottom-left"
-    data.style = {
-        borderLeft = "0.3em solid rgb(93, 236, 255)",
-        marginLeft = "0"
-    }
     SendNUIMessage({
         action = 'notify',
         data = data

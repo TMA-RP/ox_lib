@@ -1,4 +1,4 @@
-import { Button, Group, Modal, Stack } from '@mantine/core';
+import { Button, Group, Modal, Stack, createStyles } from '@mantine/core';
 import React from 'react';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
 import { useLocales } from '../../providers/LocaleProvider';
@@ -17,6 +17,13 @@ import TextareaField from './components/fields/textarea';
 import TimeField from './components/fields/time';
 import dayjs from 'dayjs';
 
+const useStyles = createStyles((theme) => ({
+  contentStack: {
+    color: theme.colors.dark[2],
+  },
+}));
+
+
 export type FormValues = {
   test: {
     value: any;
@@ -28,6 +35,7 @@ const InputDialog: React.FC = () => {
     heading: '',
     rows: [{ type: 'input', label: '' }],
   });
+  const { classes } = useStyles();
   const [visible, setVisible] = React.useState(false);
   const { locale } = useLocales();
 
@@ -48,11 +56,11 @@ const InputDialog: React.FC = () => {
             row.type !== 'checkbox'
               ? row.type === 'date' || row.type === 'date-range' || row.type === 'time'
                 ? // Set date to current one if default is set to true
-                  row.default === true
+                row.default === true
                   ? new Date().getTime()
                   : Array.isArray(row.default)
-                  ? row.default.map((date) => new Date(date).getTime())
-                  : row.default && new Date(row.default).getTime()
+                    ? row.default.map((date) => new Date(date).getTime())
+                    : row.default && new Date(row.default).getTime()
                 : row.default
               : row.checked,
         } || { value: null }
