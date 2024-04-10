@@ -1,5 +1,5 @@
 ---@diagnostic disable: invisible
-lib.print.warn('ox_lib\'s class module is experimental and may break without warning.')
+-- lib.print.warn('ox_lib\'s class module is experimental and may break without warning.')
 
 ---Ensure the given argument or property has a valid type, otherwise throwing an error.
 ---@param id number | string
