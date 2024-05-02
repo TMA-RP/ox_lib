@@ -207,7 +207,9 @@ RegisterCommand('cancelprogress', function()
     if progress?.canCancel then progress = false end
 end)
 
-exports.TMA:RegisterKeyMapping('cancelprogress', locale('cancel_progress'), 'keyboard', 'x')
+if isFivem then
+    exports.TMA:RegisterKeyMapping('cancelprogress', locale('cancel_progress'), 'keyboard', 'x')
+end
 
 RegisterNetEvent("ox_lib:makeUpper", function()
     SendNUIMessage({
