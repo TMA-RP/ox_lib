@@ -158,7 +158,7 @@ function lib.getVehicleProperties(vehicle)
         local windows = 0
 
         for i = 0, 7 do
-            RollUpWindow(vehicle, i)
+            -- RollUpWindow(vehicle, i)
 
             if not IsVehicleWindowIntact(vehicle, i) then
                 windows += 1
