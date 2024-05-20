@@ -19,9 +19,9 @@ function lib.translateObjectCoordsWithEaseInOut(obj, destination, duration)
             t = lib.math.easeInOutQuad(t, 0, 1, 1) -- Apply ease-in and ease-out
 
             local newPosition = {
-                x = lib.math.lerp(startPos.x, destination.x, t),
-                y = lib.math.lerp(startPos.y, destination.y, t),
-                z = lib.math.lerp(startPos.z, destination.z, t)
+                x = math.interp(startPos.x, destination.x, t),
+                y = math.interp(startPos.y, destination.y, t),
+                z = math.interp(startPos.z, destination.z, t)
             }
             SetEntityCoordsNoOffset(obj, newPosition.x, newPosition.y, newPosition.z, true, true, true)
         end
