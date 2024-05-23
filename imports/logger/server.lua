@@ -103,7 +103,7 @@ if service == 'fivemanage' then
 
                 SetTimeout(500, function()
                     PerformHttpRequest(endpoint, function(status, _, _, response)
-                        if status ~= 200 then 
+                        if status ~= 200 then
                             if type(response) == 'string' then
                                 response = json.decode(response) or response
                                 badResponse(endpoint, status, response)
@@ -249,11 +249,7 @@ if service == 'loki' then
         local timestamp = ('%s000000000'):format(os.time(os.date('*t')))
 
         -- Initializes values table with the message
-        local values = { message = message }
-
-        if metadata then
-            values.data = metadata
-        end
+        local values = {}
 
         -- Format the args into strings
         local tags = formatTags(source, ... and string.strjoin(',', string.tostringall(...)) or nil)
@@ -274,7 +270,8 @@ if service == 'loki' then
             values = {
                 {
                     timestamp,
-                    json.encode(values)
+                    message,
+                    values
                 }
             }
         }
