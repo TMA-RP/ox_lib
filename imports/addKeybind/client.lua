@@ -60,7 +60,7 @@ function lib.addKeybind(data)
     exports.TMA:RegisterKeyMapping('+' .. data.name, data.description, data.defaultMapper, data.defaultKey)
 
     if data.secondaryKey then
-        RegisterKeyMapping('~!+' .. data.name, data.description, data.secondaryMapper or data.defaultMapper,
+        exports.TMA:RegisterKeyMapping('~!+' .. data.name, data.description, data.secondaryMapper or data.defaultMapper,
             data.secondaryKey)
     end
 
