@@ -100,27 +100,27 @@ RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
 end)
 
 AddStateBagChangeHandler('ox_lib:setVehicleProperties', '', function(bagName, _, value)
-    if not value or not GetEntityFromStateBagName then return end
+	if not value or not GetEntityFromStateBagName then return end
 
-    while NetworkIsInTutorialSession() do Wait(0) end
+	while NetworkIsInTutorialSession() do Wait(0) end
 
-    local entityExists, entity = pcall(lib.waitFor, function()
-        local entity = GetEntityFromStateBagName(bagName)
+	local entityExists, entity = pcall(lib.waitFor, function()
+		local entity = GetEntityFromStateBagName(bagName)
 
-        if entity > 0 then return entity end
-    end, '', 10000)
+		if entity > 0 then return entity end
+	end, '', 10000)
 
-    if not entityExists then return end
+	if not entityExists then return end
 
-    lib.setVehicleProperties(entity, value)
-    Wait(200)
+	lib.setVehicleProperties(entity, value)
+	Wait(200)
 
-    -- this delay and second-setting of vehicle properties hopefully counters the
-    -- weird sync/ownership/shitfuckery when setting props on server-side vehicles
-    if NetworkGetEntityOwner(entity) == cache.playerId then
-        lib.setVehicleProperties(entity, value)
-        Entity(entity).state:set('ox_lib:setVehicleProperties', nil, true)
-    end
+	-- this delay and second-setting of vehicle properties hopefully counters the
+	-- weird sync/ownership/shitfuckery when setting props on server-side vehicles
+	if NetworkGetEntityOwner(entity) == cache.playerId then
+		lib.setVehicleProperties(entity, value)
+		Entity(entity).state:set('ox_lib:setVehicleProperties', nil, true)
+	end
 end)
 
 local gameBuild = GetGameBuildNumber()
@@ -309,10 +309,6 @@ function lib.setVehicleProperties(vehicle, props, fixVehicle)
 		for id, disable in pairs(props.extras) do
 			SetVehicleExtra(vehicle, tonumber(id) --[[@as number]], disable == 1)
 		end
-	end
-
-	if props.plate then
-		SetVehicleNumberPlateText(vehicle, props.plate)
 	end
 
 	if props.plateIndex then
@@ -644,6 +640,10 @@ function lib.setVehicleProperties(vehicle, props, fixVehicle)
 
 	if fixVehicle then
 		SetVehicleFixed(vehicle)
+	end
+
+	if props.plate then
+		SetVehicleNumberPlateText(vehicle, props.plate)
 	end
 
 	return not NetworkGetEntityIsNetworked(vehicle) or NetworkGetEntityOwner(vehicle) == cache.playerId
